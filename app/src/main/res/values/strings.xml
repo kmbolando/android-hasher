@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">HasherProjectRev1</string>
+    <string name="editText1">Input string\u2026</string>
+    <string name="button1">HASH !</string>
+    <string name="radioButton1">MD5</string>
+    <string name="radioButton2">SHA-1</string>
+    <string name="radioButton3">SHA-256</string>
+    <string name="textView1">Input a message to get a hashed string.</string>
+    <string name="textView2">Case Sensitive.</string>
+    <string name="button2">Copy to Clipboard</string>
+</resources>
