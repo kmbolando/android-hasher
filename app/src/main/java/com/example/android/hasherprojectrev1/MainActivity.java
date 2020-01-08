@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,11 +21,12 @@ import java.util.zip.CRC32;
 
 public class MainActivity extends AppCompatActivity {
 
-    public String AlgoType;
     EditText inputText;
     Button btnSubmit;
     RadioButton r_btnCRC32, r_btnMD5, r_btnSHA1;
-    TextView message;
+    TextView message, gotoFile;
+    Intent toFile;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,13 +39,22 @@ public class MainActivity extends AppCompatActivity {
         inputText = findViewById(R.id.editText1);
         btnSubmit = findViewById(R.id.button1);
         message = findViewById(R.id.textView1);
+        gotoFile = findViewById(R.id.textView4);
         r_btnCRC32 = findViewById(R.id.radioButton1);
         r_btnMD5 = findViewById(R.id.radioButton2);
         r_btnSHA1 = findViewById(R.id.radioButton3);
+
+        gotoFile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toFile = new Intent(MainActivity.this, FilesActivity.class);
+                startActivity(toFile);
+            }
+        });
     }
 
     public void submit(View view) {
-        String msgHASHED = null;
+        String msgHASHED=null;
         if (inputText.length() != 0) {
             String inputMsg = inputText.getText().toString();
             Log.v("MainActivity", "INPUT: " + inputMsg);
@@ -60,7 +71,10 @@ public class MainActivity extends AppCompatActivity {
             }
             message.setText(msgHASHED);
         }
+
     }
+
+    public String AlgoType="MD5";
 
     public String r_BtnAlgoSTATUS() {
         return AlgoType;
